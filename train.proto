@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+option go_package = "github.com/Selvakarthikeyan-7/train-ticketing-assessment/proto";
+
+service TrainTicketService {
+  rpc SubmitPurchase (PurchaseRequest) returns (Receipt);
+  rpc GetUserDetails (UserRequest) returns (UserDetails);
+  rpc ViewUsersBySection (SectionRequest) returns (UsersList);
+  rpc RemoveUser (UserRequest) returns (Empty);
+  rpc ModifyUserSeat (ModifySeatRequest) returns (UserDetails);
+}
+
+message PurchaseRequest {
+  string from = 1;
+  string to = 2;
+  User user = 3;
+}
+
+message Receipt {
+  string from = 1;
+  string to = 2;
+  User user = 3;
+  string seat = 4;
+  float pricePaid = 5;
+}
+
+message UserRequest {
+  string email = 1;
+}
+
+message UserDetails {
+  string first_name = 1;
+  string last_name = 2;
+  string email = 3;
+  string seat = 4;
+  float pricePaid = 5;
+}
+
+message SectionRequest {
+  string section = 1;
+}
+
+message UsersList {
+  repeated UserDetails users = 1;
+}
+
+message Empty {}
+
+message ModifySeatRequest {
+  string email = 1;
+  string new_seat = 2;
+}
+
+message User {
+  string first_name = 1;
+  string last_name = 2;
+  string email = 3;
+}
