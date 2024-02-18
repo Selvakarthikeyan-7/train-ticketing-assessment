@@ -8,7 +8,7 @@ import (
 	"net"
 	"sync"
 
-	"https://github.com/Selvakarthikeyan-7/train-ticketing-assessment/blob/main/train.proto"
+	"github.com/Selvakarthikeyan-7/train-ticketing-assessment/proto"
 	"google.golang.org/grpc"
 )
 
