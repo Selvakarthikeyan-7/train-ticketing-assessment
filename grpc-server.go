@@ -136,13 +136,20 @@ func (s *server) ModifyUserSeat(ctx context.Context, req *proto.ModifySeatReques
 	return user, nil
 }
 
+var usedSeats = make(map[string]bool)
+
 func generateRandomSeat() string {
-	// Generating a random seat for simplicity
-	// In a real-world scenario, you may implement a more sophisticated logic
-	return fmt.Sprintf("Seat-%d", rand.Intn(100))
+    // Generating a random seat with uniqueness check
+    for {
+        seat := fmt.Sprintf("Seat-%d", rand.Intn(100))
+        if !usedSeats[seat] {
+            usedSeats[seat] = true
+            return seat
+        }
+    }
 }
 
-// ... (previous code)
+
 
 func determineSection(seat string) string {
     // In a real-world scenario, you might have more sophisticated rules
