@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/Selvakarthikeyan-7/train-ticketing-assessment/proto"
+	"https://github.com/Selvakarthikeyan-7/train-ticketing-assessment/blob/main/train.proto"
 	"google.golang.org/grpc"
 )
 
