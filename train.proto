@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "https://github.com/Selvakarthikeyan-7/train-ticketing-assessment/blob/main/train.proto";
+option go_package = "github.com/Selvakarthikeyan-7/train-ticketing-assessment/proto";
 
 service TrainTicketService {
   rpc SubmitPurchase (PurchaseRequest) returns (Receipt);
