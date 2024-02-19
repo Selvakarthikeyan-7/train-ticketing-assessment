@@ -1,10 +1,10 @@
-// grpc-client.go
 package main
 
 import (
 	"context"
 	"fmt"
 	"log"
+	"net"
 
 	"github.com/Selvakarthikeyan-7/train-ticketing-assessment/proto"
 	"google.golang.org/grpc"
@@ -49,4 +49,27 @@ fmt.Printf("Purchase successful! Receipt:\n%s\n", receipt)
 	// Additional client calls can be added for other API methods
 
 	fmt.Println("Client execution completed.")
+	s := &server{
+        users:    make(map[string]*proto.UserDetails),
+        sections: make(map[string][]*proto.UserDetails),
+    }
+
+    // Create a gRPC server
+    grpcServer := grpc.NewServer()
+
+    // Register the TrainTicketService with the server
+    proto.RegisterTrainTicketServiceServer(grpcServer, s)
+
+    // Start the server on port 50051
+    listener, err := net.Listen("tcp", ":50051")
+    if err != nil {
+        log.Fatalf("Failed to listen: %v", err)
+    }
+    log.Println("Server is listening on port 50051...")
+
+    // Serve gRPC requests
+    if err := grpcServer.Serve(listener); err != nil {
+        // Handle server startup error
+        log.Fatalf("Failed to serve: %v", err)
+    }
 }
